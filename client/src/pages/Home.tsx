@@ -1,26 +1,30 @@
 import { motion } from "framer-motion";
-import portraitImage from "@assets/image_1772710165803.png";
+import portraitImage from "@/img/manuel/manuel.png";
+import ikeaLogo from "@/img/logos/ikea-logo-black-transparent.png";
+import cocaColaLogo from "@/img/logos/Logo-Coca-Cola.png";
+import nestleLogo from "@/img/logos/Nestle_textlogo_blue.svg_.png";
+import danoneLogo from "@/img/logos/Danone_2004_logo.png";
+import kelloggsLogo from "@/img/logos/Kelloggs-Logo.wine_-scaled.png";
+import leroyMerlinLogo from "@/img/logos/Leroy_Merlin_-_logo_France_1995-.svg_.png";
+import claLogo from "@/img/logos/Central_Lechera_Asturiana_vectorial.svg_.png";
+import { videos } from "@/data/videos";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Play } from "lucide-react";
 
 export default function Home() {
   const logos = [
-    "IKEA", "Coca-Cola", "Nestlé", "Danone", "Kellogs", "Leroy Merlin", "Central Lechera Asturiana"
+    { src: ikeaLogo, alt: "IKEA" },
+    { src: cocaColaLogo, alt: "Coca-Cola" },
+    { src: nestleLogo, alt: "Nestlé" },
+    { src: danoneLogo, alt: "Danone" },
+    { src: kelloggsLogo, alt: "Kellogg's" },
+    { src: leroyMerlinLogo, alt: "Leroy Merlin" },
+    { src: claLogo, alt: "Central Lechera Asturiana" },
   ];
 
-  const speakerVideos = [
-    { title: "Tendencias 2024", thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" },
-    { title: "Innovación en el Consejo", thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" },
-    { title: "El futuro del Retail", thumbnail: "https://images.unsplash.com/photo-1475721028314-390576a88d55?w=800&q=80" },
-    { title: "Coolhunting aplicado", thumbnail: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80" },
-  ];
-
-  const mediaVideos = [
-    { title: "Entrevista Forbes", thumbnail: "https://images.unsplash.com/photo-1604160450925-0eecf5515863?w=800&q=80" },
-    { title: "Análisis RTVE", thumbnail: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&q=80" },
-    { title: "Podcast Emprendedores", thumbnail: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80" },
-  ];
+  const speakerVideos = videos.slice(0, 6);
+  const mediaVideos = videos.slice(6);
 
   return (
     <div className="min-h-screen">
@@ -74,9 +78,13 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             {logos.map((logo, i) => (
-              <span key={i} className="font-serif text-2xl md:text-3xl font-bold text-primary/70">
-                {logo}
-              </span>
+              <img 
+                key={i}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-10 md:h-14 object-contain"
+                loading="lazy"
+              />
             ))}
           </div>
         </div>
@@ -108,26 +116,37 @@ export default function Home() {
             className="w-full"
           >
             <CarouselContent className="-ml-4 md:-ml-6">
-              {speakerVideos.map((video, index) => (
-                <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className="border-none shadow-none bg-transparent group cursor-pointer overflow-hidden rounded-2xl">
-                      <CardContent className="p-0 relative aspect-video">
-                        <img 
-                          src={video.thumbnail} 
-                          alt={video.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Play className="text-white fill-white ml-1" size={24} />
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
+              {speakerVideos.map((video, index) => {
+                const videoTitle = `Vídeo ${index + 1}`;
+
+                return (
+                  <CarouselItem key={video.url} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <a 
+                        href={video.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Card className="border-none shadow-none bg-transparent group cursor-pointer overflow-hidden rounded-2xl">
+                          <CardContent className="p-0 relative aspect-video">
+                            <img 
+                              src={video.thumbnail} 
+                              alt={videoTitle} 
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500 flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <Play className="text-white fill-white ml-1" size={24} />
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </a>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
             <div className="flex justify-end gap-2 mt-8">
               <CarouselPrevious className="static translate-y-0" />
@@ -163,26 +182,37 @@ export default function Home() {
             className="w-full"
           >
             <CarouselContent className="-ml-4 md:-ml-6">
-              {mediaVideos.map((video, index) => (
-                <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className="border border-white/10 shadow-none bg-white/5 group cursor-pointer overflow-hidden rounded-2xl backdrop-blur-sm">
-                      <CardContent className="p-0 relative aspect-video">
-                        <img 
-                          src={video.thumbnail} 
-                          alt={video.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Play className="text-white fill-white ml-1" size={24} />
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
+              {mediaVideos.map((video, index) => {
+                const videoTitle = `Vídeo ${speakerVideos.length + index + 1}`;
+
+                return (
+                  <CarouselItem key={video.url} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <a 
+                        href={video.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Card className="border border-white/10 shadow-none bg-white/5 group cursor-pointer overflow-hidden rounded-2xl backdrop-blur-sm">
+                          <CardContent className="p-0 relative aspect-video">
+                            <img 
+                              src={video.thumbnail} 
+                              alt={videoTitle} 
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <Play className="text-white fill-white ml-1" size={24} />
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </a>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
             <div className="flex justify-end gap-2 mt-8">
               <CarouselPrevious className="static translate-y-0 bg-white/10 border-none hover:bg-white/20 text-white" />
