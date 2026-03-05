@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import coolhunterCover from "@/img/portadas-libros/El-libro-blanco-del-coolhunter.webp";
+import designThinkingCover from "@/img/portadas-libros/Design-thinking-i1n11112532.jpg";
 
 export default function Author() {
   const books = [
@@ -7,13 +9,13 @@ export default function Author() {
       title: "El libro blanco del Coolhunter",
       description: "Manual práctico de referencia sobre la Profesión del Coolhunter o Analista de Tendencias: explica qué es y por qué crece su demanda, define el rol del coolhunter (funciones, perfil y deontología) y muestra cómo formarse, dónde buscar señales, cómo apoyarse en tecnología y herramientas digitales, y cómo trabajar con metodología para identificar, analizar y aprovechar tendencias con impacto en negocio.",
       link: "https://www.bubok.es/libros/208118/el-libro-blanco-del-coolhunter",
-      cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=800&auto=format&fit=crop"
+      cover: coolhunterCover
     },
     {
       title: "Design Thinking. Lidera el presente. Crea el futuro",
       description: "Un libro práctico para comprender y aplicar el Pensamiento de Diseño como forma de resolver problemas e impulsar la innovación en productos, servicios, procesos y estrategia. Explica qué es el Design Thinking y cómo piensan los “design thinkers”, diferencia diseño vs. pensamiento de diseño, presenta metodologías y herramientas para ponerlo en práctica (de la observación y la empatía al prototipado y la validación) y aterriza su aplicación en la empresa.",
       link: "https://www.esic.edu/editorial/design-thinking",
-      cover: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+      cover: designThinkingCover
     }
   ];
 
