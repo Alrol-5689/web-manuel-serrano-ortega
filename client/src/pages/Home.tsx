@@ -14,13 +14,13 @@ import { Play } from "lucide-react";
 
 export default function Home() {
   const logos = [
-    { src: ikeaLogo, alt: "IKEA" },
-    { src: cocaColaLogo, alt: "Coca-Cola" },
-    { src: nestleLogo, alt: "Nestlé" },
-    { src: danoneLogo, alt: "Danone" },
-    { src: kelloggsLogo, alt: "Kellogg's" },
-    { src: leroyMerlinLogo, alt: "Leroy Merlin" },
-    { src: claLogo, alt: "Central Lechera Asturiana" },
+    { src: ikeaLogo, alt: "IKEA", scale: 1 },
+    { src: cocaColaLogo, alt: "Coca-Cola", scale: 1.05 },
+    { src: nestleLogo, alt: "Nestlé", scale: 0.9 },
+    { src: danoneLogo, alt: "Danone", scale: 1 },
+    { src: kelloggsLogo, alt: "Kellogg's", scale: 1.25 },
+    { src: leroyMerlinLogo, alt: "Leroy Merlin", scale: 1.1 },
+    { src: claLogo, alt: "Central Lechera Asturiana", scale: 1.05 },
   ];
 
   const speakerVideos = videos.slice(0, 6);
@@ -78,13 +78,18 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             {logos.map((logo, i) => (
-              <img 
+              <div 
                 key={i}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-10 md:h-14 object-contain"
-                loading="lazy"
-              />
+                className="flex items-center justify-center h-12 w-28 md:h-16 md:w-32"
+              >
+                <img 
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="max-h-full max-w-full object-contain"
+                  style={{ transform: `scale(${logo.scale})` }}
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>
