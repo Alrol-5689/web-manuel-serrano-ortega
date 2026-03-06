@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function Navbar() {
@@ -22,8 +22,19 @@ export default function Navbar() {
     { name: "Autor", href: "/autor", external: false },
     { name: "Speaker", href: "/#speaker", external: false },
     { name: "Blog", href: "/#blog", external: false },
-    { name: "Contacto", href: "/#contacto", external: false },
+    { name: "Contacto", href: "#contacto", external: false, isAnchor: true },
   ];
+
+  const scrollToContact = (event?: MouseEvent<HTMLElement>) => {
+    event?.preventDefault();
+    setIsOpen(false);
+    const target = document.getElementById("contacto");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = "/#contacto";
+    }
+  };
 
   return (
     <nav
@@ -46,6 +57,15 @@ export default function Navbar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {link.name}
+              </a>
+            ) : link.isAnchor ? (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={scrollToContact}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.name}
@@ -84,6 +104,15 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ) : link.isAnchor ? (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={scrollToContact}
+                className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.name}
               </a>
