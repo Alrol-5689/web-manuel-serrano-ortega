@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,18 +20,37 @@ export default function Navbar() {
     { name: "Consultoría", href: "https://www.coolhuntingg.com", external: true },
     { name: "Formación", href: "https://www.coolhuntinguniversity.com", external: true },
     { name: "Autor", href: "/autor", external: false },
-    { name: "Speaker", href: "/#speaker", external: false },
+    { name: "Speaker", href: "#speaker", external: false, isAnchor: true },
     { name: "Contacto", href: "#contacto", external: false, isAnchor: true },
   ];
 
-  const scrollToContact = (event?: MouseEvent<HTMLElement>) => {
+  useEffect(() => {
+    const hash = window.location.hash?.replace("#", "");
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [location]);
+
+  const scrollToSection =
+    (sectionId: string) => (event?: MouseEvent<HTMLElement>) => {
     event?.preventDefault();
     setIsOpen(false);
-    const target = document.getElementById("contacto");
+
+    const target = document.getElementById(sectionId);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.location.href = "/#contacto";
+      if (location !== "/") {
+        setLocation("/");
+        requestAnimationFrame(() => {
+          window.location.hash = `#${sectionId}`;
+        });
+      } else {
+        window.location.hash = `#${sectionId}`;
+      }
     }
   };
 
@@ -64,7 +83,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={scrollToContact}
+                onClick={scrollToSection(link.href.replace("#", ""))}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.name}
@@ -110,7 +129,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={scrollToContact}
+                onClick={scrollToSection(link.href.replace("#", ""))}
                 className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.name}
