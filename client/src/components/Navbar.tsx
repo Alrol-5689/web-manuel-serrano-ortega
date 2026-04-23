@@ -21,7 +21,6 @@ export default function Navbar() {
     { name: "Formación", href: "https://www.coolhuntinguniversity.com", external: true },
     { name: "Autor", href: "/autor", external: false },
     { name: "Speaker", href: "/#speaker", external: false },
-    { name: "Blog", href: "/#blog", external: false },
     { name: "Contacto", href: "#contacto", external: false, isAnchor: true },
   ];
 
