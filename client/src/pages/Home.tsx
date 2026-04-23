@@ -165,7 +165,7 @@ export default function Home() {
       <section className="py-24 md:py-32 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl mb-6">En medios</h2>
+            <h2 className="font-serif text-4xl md:text-5xl mb-6">Medios</h2>
             <p className="text-xl text-primary-foreground/80">
               Entrevistas y análisis sobre tendencias, innovación y cambio.
             </p>
