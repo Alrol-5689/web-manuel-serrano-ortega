@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import portraitImage from "@/img/manuel/manuel.png";
+import heroImage from "@/img/brand/mso-nanobanana.png";
 import ikeaLogo from "@/img/logos/ikea-logo-black-transparent.png";
 import cocaColaLogo from "@/img/logos/Logo-Coca-Cola.png";
 import nestleLogo from "@/img/logos/Nestle_textlogo_blue.svg_.png";
@@ -61,9 +61,9 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-secondary rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
               <img 
-                src={portraitImage} 
-                alt="Manuel Serrano Ortega" 
-                className="w-full h-auto object-cover rounded-[3rem] shadow-2xl"
+                src={heroImage} 
+                alt="MSO" 
+                className="w-full h-auto object-contain rounded-[3rem] shadow-2xl"
               />
             </motion.div>
           </div>
