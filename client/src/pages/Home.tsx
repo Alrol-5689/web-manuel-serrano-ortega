@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroImage from "@/img/brand/mso-nanobanana.png";
+import heroImage from "@/img/brand/mso-original.png";
 import ikeaLogo from "@/img/logos/ikea-logo-black-transparent.png";
 import cocaColaLogo from "@/img/logos/Logo-Coca-Cola.png";
 import nestleLogo from "@/img/logos/Nestle_textlogo_blue.svg_.png";
